@@ -11,7 +11,7 @@ nome (String)
 
 telefone (Long)
 
-correntista (Boolean)
+correntista (Boolean)A
 score_credito (Float)
 
 saldo_cc (Float)
