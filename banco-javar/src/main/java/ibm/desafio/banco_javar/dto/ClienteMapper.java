@@ -15,7 +15,7 @@ public class ClienteMapper {
             dto.setNome(cliente.getNome());
             dto.setTelefone(cliente.getTelefone());
             dto.setCorrentista(cliente.getCorrentista());
-            dto.setScoreCredito(cliente.getScoreCredito());
+
             dto.setSaldo(cliente.getSaldo());
             return dto;
         }

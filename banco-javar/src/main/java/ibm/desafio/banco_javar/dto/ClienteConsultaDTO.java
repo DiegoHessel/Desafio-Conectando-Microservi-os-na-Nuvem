@@ -10,7 +10,6 @@ public class ClienteConsultaDTO {
     private String nome;
     private Long telefone;
     private Boolean correntista;
-    private float scoreCredito;
     private float saldo;
 
     public ClienteConsultaDTO(Cliente cliente) {
@@ -18,7 +17,6 @@ public class ClienteConsultaDTO {
         this.nome = cliente.getNome();
         this.telefone = cliente.getTelefone();
         this.correntista = cliente.getCorrentista();
-        this.scoreCredito = cliente.getScoreCredito();
         this.saldo = cliente.getSaldo();
     }
 }

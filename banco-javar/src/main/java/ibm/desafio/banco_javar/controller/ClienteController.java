@@ -58,8 +58,6 @@ public class ClienteController {
         }
     }
 
-
-
     @GetMapping("/{id}/calcularScoreCredito")
     public Float calcularScoreCredito(@PathVariable Long id) {
         Cliente cliente = clienteService.buscarClientePorId(id);
