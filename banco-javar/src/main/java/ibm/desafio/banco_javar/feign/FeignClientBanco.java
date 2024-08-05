@@ -12,23 +12,25 @@ import java.util.List;
 
 @Service
 @FeignClient(
-        value = "data-manager",
-        url = "${spring.cloud.openfeign.client.config.data-manager.url}:8000",
-
-        path = "/clientes")
+        url = "http://localhost:8000/clientes",
+        name = "/clientes")
 public interface FeignClientBanco {
-    @PostMapping
-    ClienteListagemDTO cadastrar(ClienteCriacaoDTO cliente);
 
-    @GetMapping
+    @GetMapping("/json")
     List<ClienteListagemDTO> listar(Pageable paginacao);
+
+    @GetMapping({"/{id}/json"})
+    ClienteListagemDTO getById(@PathVariable Long id);
 
     @PutMapping
     ClienteListagemDTO atualizar(Cliente dados);
 
+
+    @PostMapping
+    ClienteListagemDTO cadastrar(ClienteCriacaoDTO cliente);
+
     @DeleteMapping({"/{id}"})
     void deletar(@PathVariable Long id);
 
-    @GetMapping({"/{id}"})
-    ClienteListagemDTO getById(@PathVariable Long id);
+
 }

@@ -13,7 +13,6 @@ import java.util.List;
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
-
     public List<Cliente> listarClientes() {
         return clienteRepository.findAll();
     }
