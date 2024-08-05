@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @FeignClient(
-        url = "http://localhost:8000/clientes",
+        url = "http://localhost:8001/clientes",
         name = "cadastro-banco-java")
 public interface FeignClientBanco {
 
@@ -22,7 +22,7 @@ public interface FeignClientBanco {
     ClienteListagemDTO getById(@PathVariable Long id);
 
     @PutMapping({"/{id}"})
-    ClienteListagemDTO atualizar(Long id, Cliente dados);
+    ClienteListagemDTO atualizar(@PathVariable Long id, Cliente dados);
 
 
     @PostMapping

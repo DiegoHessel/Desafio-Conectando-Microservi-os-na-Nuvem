@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.example.cadastrobancojava.dto.ClienteCriacaoDTO;
 
@@ -20,8 +21,9 @@ public class Cliente {
     @Column(name = "nome")
     @NotNull
     @NotBlank
+    @Size(min = 3)
     private String nome;
-@NotNull
+    @NotNull
     @Column(name = "Telefone")
     private Long telefone;
     @NotNull
@@ -31,12 +33,14 @@ public class Cliente {
     @PositiveOrZero
     @Column(name = "saldo_cc")
     private float saldo;
+    private float scoreCredito;
 
     public Cliente(ClienteCriacaoDTO clienteDto) {
         this.nome = clienteDto.getNome();
         this.telefone = clienteDto.getTelefone();
         this.correntista = clienteDto.getCorrentista();
         this.saldo = clienteDto.getSaldo();
+
     }
 
     public float getScoreCredito() {

@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.awt.print.Pageable;
 import java.util.List;
 
@@ -18,9 +19,9 @@ import java.util.List;
 @RequestMapping("/clientes")
 public class ClienteController {
     @Autowired
-    private  ClienteServiceApi clienteService;
+    private ClienteServiceApi clienteService;
     @Autowired
-    private  FeignClientBanco feignClient;
+    private FeignClientBanco feignClient;
 
     @GetMapping
     public ResponseEntity<List<ClienteListagemDTO>> listarClientes(Pageable paginacao) {
@@ -72,5 +73,6 @@ public class ClienteController {
         } else {
             throw new EntidadeNaoEncontradaException("Cliente não encontrado!");
         }
+    
     }
 }
