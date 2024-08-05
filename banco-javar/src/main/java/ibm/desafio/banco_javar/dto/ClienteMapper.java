@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ClienteMapper {
 
-    public static ClienteListagemDTO toDTO(Cliente cliente) {
+    public static ClienteListagemDTO toDTO(ClienteListagemDTO cliente) {
         if (cliente == null) {
             return null;
         } else {
@@ -21,7 +21,7 @@ public class ClienteMapper {
         }
     }
 
-    public static List<ClienteListagemDTO> toDto(List<Cliente> entities) {
+    public static List<ClienteListagemDTO> toDto(List<ClienteListagemDTO> entities) {
         return entities.stream()
                 .map(ClienteMapper::toDTO)
                 .collect(Collectors.toList());

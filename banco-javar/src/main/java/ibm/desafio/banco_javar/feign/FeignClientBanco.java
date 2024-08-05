@@ -1,33 +1,32 @@
 package ibm.desafio.banco_javar.feign;
 
-import ibm.desafio.banco_javar.dto.ClienteCriacaoDTO;
 import ibm.desafio.banco_javar.dto.ClienteListagemDTO;
 import ibm.desafio.banco_javar.entity.Cliente;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
-@Service
+@Component
 @FeignClient(
         url = "http://localhost:8000/clientes",
-        name = "/clientes")
+        name = "cadastro-banco-java")
 public interface FeignClientBanco {
 
-    @GetMapping("/json")
-    List<ClienteListagemDTO> listar(Pageable paginacao);
+    @GetMapping()
+    List<ClienteListagemDTO> listar(Cliente paginacao);
 
-    @GetMapping({"/{id}/json"})
+    @GetMapping({"/{id}"})
     ClienteListagemDTO getById(@PathVariable Long id);
 
-    @PutMapping
-    ClienteListagemDTO atualizar(Cliente dados);
+    @PutMapping({"/{id}"})
+    ClienteListagemDTO atualizar(Long id, Cliente dados);
 
 
     @PostMapping
-    ClienteListagemDTO cadastrar(ClienteCriacaoDTO cliente);
+    ClienteListagemDTO cadastrar(Cliente cliente);
 
     @DeleteMapping({"/{id}"})
     void deletar(@PathVariable Long id);
