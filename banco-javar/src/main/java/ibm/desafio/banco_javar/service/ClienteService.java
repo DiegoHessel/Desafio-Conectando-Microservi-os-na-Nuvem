@@ -45,4 +45,8 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
+    public  Float  calcularScoreCredito(Float saldo){
+        return saldo * 0.1f;
+    }
+
 }

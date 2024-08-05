@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +24,6 @@ public class Cliente {
 
     @Column(name = "saldo_cc")
     private float saldo;
-
-  public  Cliente(Long id, String nome, Long telefone, Boolean correntista, float saldo){
-        this.id = id;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.correntista = correntista;
-        this.saldo = saldo;
-  }
 
     public float getScoreCredito() {
         return saldo = this.saldo * 0.1f;

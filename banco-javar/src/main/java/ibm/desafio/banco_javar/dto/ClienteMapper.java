@@ -3,41 +3,40 @@ package ibm.desafio.banco_javar.dto;
 import ibm.desafio.banco_javar.entity.Cliente;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ClienteMapper {
 
-    public static ClienteConsultaDTO toDto(Cliente cliente) {
+    public static ClienteListagemDTO toDTO(Cliente cliente) {
         if (cliente == null) {
             return null;
         } else {
-            ClienteConsultaDTO dto = new ClienteConsultaDTO(cliente);
+            ClienteListagemDTO dto = new ClienteListagemDTO();
             dto.setId(cliente.getId());
             dto.setNome(cliente.getNome());
             dto.setTelefone(cliente.getTelefone());
             dto.setCorrentista(cliente.getCorrentista());
-
             dto.setSaldo(cliente.getSaldo());
             return dto;
         }
     }
 
-    public static List<ClienteConsultaDTO> toDto(List<Cliente> clientes) {
-        if (clientes == null) {
-            return null;
-        } else {
-            return clientes.stream().map(ClienteMapper::toDto).toList();
-        }
+    public static List<ClienteListagemDTO> toDto(List<Cliente> entities) {
+        return entities.stream()
+                .map(ClienteMapper::toDTO)
+                .collect(Collectors.toList());
     }
-    public static Cliente toEntity(ClienteCriacaoDto dto) {
+
+    public static Cliente toEntity(ClienteCriacaoDTO dto) {
         if (dto == null) {
             return null;
         } else {
-            Cliente cliente = new Cliente();
-            cliente.setNome(dto.getNome());
-            cliente.setTelefone(dto.getTelefone());
-            cliente.setCorrentista(dto.getCorrentista());
-            cliente.setSaldo(dto.getSaldo());
-            return cliente;
+            Cliente entity = new Cliente();
+            entity.setNome(dto.getNome());
+            entity.setTelefone(dto.getTelefone());
+            entity.setCorrentista(dto.getCorrentista());
+            entity.setSaldo(dto.getSaldo());
+            return entity;
         }
     }
 }
