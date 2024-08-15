@@ -4,7 +4,6 @@ import ibm.desafio.banco_javar.dto.ClienteListagemDTO;
 import ibm.desafio.banco_javar.entity.Cliente;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
 public interface FeignClientBanco {
 
     @GetMapping()
-    List<ClienteListagemDTO> listar(Cliente paginacao);
+    List<ClienteListagemDTO> listar();
 
     @GetMapping({"/{id}"})
     ClienteListagemDTO getById(@PathVariable Long id);

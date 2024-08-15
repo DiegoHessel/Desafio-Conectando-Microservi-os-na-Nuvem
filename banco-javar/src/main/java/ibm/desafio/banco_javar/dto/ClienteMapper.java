@@ -11,13 +11,7 @@ public class ClienteMapper {
         if (cliente == null) {
             return null;
         } else {
-            ClienteListagemDTO dto = new ClienteListagemDTO();
-            dto.setId(cliente.getId());
-            dto.setNome(cliente.getNome());
-            dto.setTelefone(cliente.getTelefone());
-            dto.setCorrentista(cliente.getCorrentista());
-            dto.setSaldo(cliente.getSaldo());
-            return dto;
+            return new ClienteListagemDTO(cliente.getId(), cliente.getNome(), cliente.getSaldo());
         }
     }
 
@@ -33,8 +27,6 @@ public class ClienteMapper {
         } else {
             Cliente entity = new Cliente();
             entity.setNome(dto.getNome());
-            entity.setTelefone(dto.getTelefone());
-            entity.setCorrentista(dto.getCorrentista());
             entity.setSaldo(dto.getSaldo());
             return entity;
         }

@@ -1,19 +1,20 @@
 package org.example.cadastrobancojava.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Data;
 import org.example.cadastrobancojava.dto.ClienteCriacaoDTO;
 
+@Data
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Cliente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,18 +22,21 @@ public class Cliente {
     @Column(name = "nome")
     @NotNull
     @NotBlank
-    @Size(min = 3)
     private String nome;
+
     @NotNull
     @Column(name = "Telefone")
     private Long telefone;
+
     @NotNull
     @Column(name = "correntista")
     private Boolean correntista;
+
     @NotNull
     @PositiveOrZero
     @Column(name = "saldo_cc")
     private float saldo;
+
     private float scoreCredito;
 
     public Cliente(ClienteCriacaoDTO clienteDto) {
@@ -40,12 +44,17 @@ public class Cliente {
         this.telefone = clienteDto.getTelefone();
         this.correntista = clienteDto.getCorrentista();
         this.saldo = clienteDto.getSaldo();
+    }
 
+    public Cliente(long id, String nome, Long telefone, Boolean correntista, float saldo) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.correntista = correntista;
+        this.saldo = saldo;
     }
 
     public float getScoreCredito() {
-        return saldo = this.saldo * 0.1f;
-
+        return saldo * 0.1f;
     }
-
 }

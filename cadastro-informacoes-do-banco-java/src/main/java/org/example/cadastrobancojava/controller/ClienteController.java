@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.example.cadastrobancojava.dto.ClienteCriacaoDTO;
 import org.example.cadastrobancojava.dto.DadosClienteListagemDTO;
 import org.example.cadastrobancojava.service.ClienteService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,12 +19,10 @@ import java.util.stream.Collectors;
 public class ClienteController {
 
     private final ClienteService clienteService;
-
     @GetMapping
-    public List<DadosClienteListagemDTO> listarClientes(Pageable pageable) {
-        return new ArrayList<>(clienteService.listarClientes(pageable));
+    public Page<DadosClienteListagemDTO> listarClientes(Pageable pageable) {
+        return clienteService.listarClientes(pageable);
     }
-
     @GetMapping("/{id}")
     public DadosClienteListagemDTO buscarClientePorId(@PathVariable Long id) {
         return clienteService.buscarClientePorId(id);

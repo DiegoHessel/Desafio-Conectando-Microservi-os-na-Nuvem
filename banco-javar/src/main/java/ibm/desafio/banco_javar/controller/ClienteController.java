@@ -11,8 +11,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController()
@@ -25,9 +25,9 @@ public class ClienteController {
 
     @GetMapping
     public ResponseEntity<List<ClienteListagemDTO>> listarClientes(Pageable paginacao) {
-        List<ClienteListagemDTO> clientes = feignClient.listar((Cliente) paginacao);
+        List<ClienteListagemDTO> clientes = feignClient.listar();
         if (clientes.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok().build();
         }
         List<ClienteListagemDTO> dtos = ClienteMapper.toDto(clientes);
         return ResponseEntity.ok(dtos);
@@ -73,6 +73,6 @@ public class ClienteController {
         } else {
             throw new EntidadeNaoEncontradaException("Cliente não encontrado!");
         }
-    
+
     }
 }

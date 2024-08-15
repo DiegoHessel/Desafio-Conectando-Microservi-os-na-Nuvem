@@ -14,4 +14,10 @@ public class ClienteCriacaoDTO{
     private Boolean correntista;
     private float scoreCredito;
     private float saldo;
+
+
+    public ClienteCriacaoDTO(String nome, float saldo) {
+        this.nome = nome;
+        this.saldo = saldo;
+    }
 }
