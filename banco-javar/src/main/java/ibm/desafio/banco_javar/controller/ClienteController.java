@@ -25,12 +25,11 @@ public class ClienteController {
 
     @GetMapping
     public ResponseEntity<List<ClienteListagemDTO>> listarClientes(Pageable paginacao) {
-        List<ClienteListagemDTO> clientes = feignClient.listar();
+        List<ClienteListagemDTO> clientes = clienteService.listarClientes();
         if (clientes.isEmpty()) {
             return ResponseEntity.ok().build();
         }
-        List<ClienteListagemDTO> dtos = ClienteMapper.toDto(clientes);
-        return ResponseEntity.ok(dtos);
+        return ResponseEntity.ok(clientes);
     }
 
     @GetMapping("/{id}")
